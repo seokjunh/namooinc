@@ -5,6 +5,7 @@ import HeaderLogo from "./HeaderLogo";
 import HeaderNav from "./HeaderNav";
 import MobileMenu from "./MobileMenu";
 import DetailMenu from "./DetailMenu";
+import LocaleChangeButton from "./LocaleChangeButton";
 
 const TransHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,12 +38,15 @@ const TransHeader = () => {
         }`}
       >
         <HeaderLogo />
-        <HeaderNav onMouseEnter={handleMouseEnter} />
-        {!isScrolled ? (
-          <MobileMenu fill={"#ffffff"} />
-        ) : (
-          <MobileMenu fill={"#000000"} />
-        )}
+        <div className="flex space-x-[4rem]">
+          <HeaderNav onMouseEnter={handleMouseEnter} />
+          {!isScrolled ? (
+            <MobileMenu fill={"#ffffff"} />
+          ) : (
+            <MobileMenu fill={"#000000"} />
+          )}
+          <LocaleChangeButton />
+        </div>
       </div>
 
       <div

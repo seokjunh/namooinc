@@ -1,20 +1,23 @@
+import { useTranslations } from "next-intl";
+
 const HeaderNav = ({ onMouseEnter }: { onMouseEnter: () => void }) => {
+  const t = useTranslations("Navigation");
   return (
     <div
       className="font-pretendard hidden space-x-[4rem] text-xl font-semibold md:flex"
       onMouseEnter={onMouseEnter}
     >
       <div className="cursor-default hover:text-[#78b237] hover:underline hover:decoration-4 hover:underline-offset-[2.5rem]">
-        회사소개
+        {t("CompanyIntro")}
       </div>
       <div className="cursor-default hover:text-[#78b237] hover:underline hover:decoration-4 hover:underline-offset-[2.5rem]">
-        솔루션
+        {t("Solution")}
       </div>
       <div className="cursor-default hover:text-[#78b237] hover:underline hover:decoration-4 hover:underline-offset-[2.5rem]">
-        고객지원
+        {t("Support")}
       </div>
       <div className="cursor-default hover:text-[#78b237] hover:underline hover:decoration-4 hover:underline-offset-[2.5rem]">
-        인재채용
+        {t("Career")}
       </div>
     </div>
   );

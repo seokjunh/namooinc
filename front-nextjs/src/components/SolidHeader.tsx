@@ -5,6 +5,7 @@ import DetailMenu from "./DetailMenu";
 import HeaderLogo from "./HeaderLogo";
 import HeaderNav from "./HeaderNav";
 import MobileMenu from "./MobileMenu";
+import LocaleChangeButton from "./LocaleChangeButton";
 
 const SolidHeader = () => {
   const [showDetailMenu, setShowDetailMenu] = useState(false);
@@ -18,6 +19,7 @@ const SolidHeader = () => {
         <HeaderLogo />
         <HeaderNav onMouseEnter={handleMouseEnter} />
         <MobileMenu fill="#000000" />
+        <LocaleChangeButton />
       </div>
 
       <div
