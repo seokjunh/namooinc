@@ -44,4 +44,3 @@ npm run dev
 cd namooinc/back-springboot-mssql
 \src\main\java\com\namooinc\back_springboot_mssql\BackSpringbootMssqlApplication.java
 ```
->>>>>>> cb608cc7356cddc391f9329734327e7efad20d12
