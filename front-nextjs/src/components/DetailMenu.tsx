@@ -1,53 +1,57 @@
 import { Link } from "@/i18n/rounting";
+import { useTranslations } from "next-intl";
 
-const navItems = [
+interface DetailMenuProps {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}
+
+const sections = [
   {
-    label: "회사소개",
-    href: "/company",
-    submenus: [
-      { label: "나무I&C 소개", href: "/company/intro" },
-      { label: "CEO 인사말", href: "/company/ceo" },
-      { label: "연혁", href: "/company/history" },
-      { label: "비전", href: "/company/vision" },
-    ],
+    key: "CompanyIntro",
+    contentKeys: ["intro", "ceo", "history", "vision"],
   },
   {
-    label: "솔루션",
-    href: "/solution",
-    submenus: [
-      { label: "CORECODE", href: "/solution/corecode" },
-      { label: "P2E", href: "/solution/p2e" },
-      { label: "Q2E", href: "/solution/q2e" },
-      { label: "S2E", href: "/solution/s2e" },
-      { label: "U2E", href: "/solution/u2e" },
-    ],
+    key: "Solution",
+    contentKeys: ["corecode", "p2e", "q2e", "s2e", "u2e"],
   },
   {
-    label: "고객지원",
-    href: "/support",
-    submenus: [
-      { label: "게시판", href: "/support/notice" },
-      { label: "자료실", href: "/support/download" },
-      { label: "오시는 길", href: "/support/visit" },
-    ],
+    key: "Support",
+    contentKeys: ["notice", "download", "visit"],
   },
   {
-    label: "인재채용",
-    href: "/support",
-    submenus: [
-      { label: "채용정보", href: "/careers/jobs" },
-      { label: "채용문의", href: "/careers/inquiry" },
-    ],
+    key: "Career",
+    contentKeys: ["jobs", "inquiry"],
   },
 ];
 
-const DetailMenu = ({
-  onMouseEnter,
-  onMouseLeave,
-}: {
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}) => {
+const sectionUrl: Record<string, Record<string, string>> = {
+  CompanyIntro: {
+    intro: "/company/intro",
+    ceo: "/company/ceo",
+    history: "/company/history",
+    vision: "/company/vision",
+  },
+  Solution: {
+    corecode: "/solution/corecode",
+    p2e: "/solution/p2e",
+    q2e: "/solution/q2e",
+    s2e: "/solution/s2e",
+    u2e: "/solution/u2e",
+  },
+  Support: {
+    notice: "/support/notice",
+    download: "/support/download",
+    visit: "/support/visit",
+  },
+  Career: {
+    jobs: "/careers/jobs",
+    inquiry: "/careers/inquiry",
+  },
+};
+
+const DetailMenu = ({ onMouseEnter, onMouseLeave }: DetailMenuProps) => {
+  const t = useTranslations("DetailMenu");
   return (
     <div
       className="w-full bg-white"
@@ -55,20 +59,22 @@ const DetailMenu = ({
       onMouseLeave={onMouseLeave}
     >
       <div className="flex justify-around border-t py-5 lg:px-[25rem]">
-        {navItems.map(({ label, submenus }) => (
-          <div key={label}>
+        {sections.map((section) => (
+          <div key={section.key}>
             <div className="font-pretendard pb-2 text-lg font-bold">
-              {label}
+              {t(`${section.key}.title`)}
             </div>
-            {submenus.map((submenu) => (
-              <Link
-                key={submenu.label}
-                href={submenu.href}
-                className="block py-1 hover:text-[#78b237]"
-              >
-                {submenu.label}
-              </Link>
-            ))}
+            <div>
+              {section.contentKeys.map((contentKey) => (
+                <Link
+                  key={contentKey}
+                  href={sectionUrl[section.key][contentKey]}
+                  className="block py-1 hover:text-[#78b237]"
+                >
+                  {t(`${section.key}.contents.${contentKey}`)}
+                </Link>
+              ))}
+            </div>
           </div>
         ))}
       </div>

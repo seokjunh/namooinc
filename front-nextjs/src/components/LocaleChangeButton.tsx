@@ -1,19 +1,17 @@
 "use client";
 
-import { usePathname } from "@/i18n/rounting";
+import { routing, usePathname, useRouter } from "@/i18n/rounting";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 
 const LocaleChangeButton = () => {
-  const t = useTranslations("Language");
+  const t = useTranslations("LocaleSwitcher");
   const router = useRouter();
   const pathName = usePathname();
   const currentLocale = useLocale();
 
   const handleLocaleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    const selected = e.target.value;
-    router.push(`/${selected}${pathName}`);
+    const nextLocale = e.target.value;
+    router.replace(`/${pathName}`, { locale: nextLocale });
   };
 
   return (
@@ -22,12 +20,11 @@ const LocaleChangeButton = () => {
       defaultValue={currentLocale}
       onChange={handleLocaleChange}
     >
-      <option className="text-black" value="ko">
-        {t("Korean")}
-      </option>
-      <option className="text-black" value="en">
-        {t("English")}
-      </option>
+      {routing.locales.map((cur) => (
+        <option key={cur} value={cur} className="text-black">
+          {t("locale", { locale: cur })}
+        </option>
+      ))}
     </select>
   );
 };

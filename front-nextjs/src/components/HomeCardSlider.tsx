@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState, useCallback } from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,17 +15,16 @@ const sliderImages = [
     src: "/image/slider-img.png",
     alt: "CoreCode Image 1",
     title: "Connecting Value, CoreCode",
-    description: "미래의 Digital 기술로 제조 산업의 경쟁력을 높입니다.",
   },
   {
     src: "/image/slider-img.png",
     alt: "CoreCode Image 2",
     title: "Connecting Value, CoreCode",
-    description: "미래의 Digital 기술로 제조 산업의 경쟁력을 높입니다.",
   },
 ];
 
 const HomeCardSlider = () => {
+  const t = useTranslations("CardSlider");
   const [key, setkey] = useState(0);
 
   const ReSizeHandler = useCallback(() => {
@@ -65,7 +65,7 @@ const HomeCardSlider = () => {
                 {image.title}
               </div>
               <div className="text-sm md:text-base lg:text-xl">
-                {image.description}
+                {t("Description")}
               </div>
             </div>
           </div>
