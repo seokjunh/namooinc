@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/rounting";
 
 interface NoticeDeleteButtonProps {
   postId: string;

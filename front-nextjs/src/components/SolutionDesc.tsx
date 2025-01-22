@@ -52,7 +52,7 @@ const SolutionDesc = ({ scrollRef, setActiveSection }: DescProps) => {
   }, [setActiveSection, scrollRef]);
 
   return (
-    <div className="mx-auto grid max-w-5xl gap-y-20 py-[7.5rem]">
+    <div className="mx-auto max-w-xs md:max-w-xl lg:max-w-5xl py-16 space-y-16">
       <div ref={setRef(0)} className="scroll-mt-44">
         <SolutionConcept />
       </div>

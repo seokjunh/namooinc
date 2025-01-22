@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/input-otp";
 import { useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 const FormSchema = z.object({
   passKey: z.string().min(10, {
@@ -27,6 +28,7 @@ const FormSchema = z.object({
 const InputOTPForm = () => {
   const router = useRouter();
   const pathName = usePathname();
+  const locale = useLocale();
   const InputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -47,8 +49,8 @@ const InputOTPForm = () => {
 
     if (passkey === process.env.NEXT_PUBLIC_NOTICE_PASS_KEY) {
       const targetPath =
-        pathName === "/support/notice"
-          ? "/support/notice/write"
+        pathName === `/${locale}/support/notice`
+          ? `${pathName}/write`
           : `${pathName}/patch-notice`;
 
       router.push(targetPath);
@@ -68,16 +70,16 @@ const InputOTPForm = () => {
               <FormControl>
                 <InputOTP maxLength={10} {...field} ref={InputRef}>
                   <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                    <InputOTPSlot index={6} />
-                    <InputOTPSlot index={7} />
-                    <InputOTPSlot index={8} />
-                    <InputOTPSlot index={9} />
+                    <InputOTPSlot index={0} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={1} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={2} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={3} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={4} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={5} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={6} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={7} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={8} className="w-[1.7rem] sm:w-9" />
+                    <InputOTPSlot index={9} className="w-[1.7rem] sm:w-9" />
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>

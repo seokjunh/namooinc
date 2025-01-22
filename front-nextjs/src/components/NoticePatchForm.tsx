@@ -14,11 +14,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
-import { useRouter } from "next/navigation";
+
 import { Label } from "./ui/label";
 import Close from "../../public/svg/Close";
 import { post } from "@/lib/type";
 import DeleteButton from "./DeleteButton";
+import { useRouter } from "@/i18n/rounting";
 
 interface PatchNoticeProps {
   post: post;
@@ -98,48 +99,48 @@ const NoticePatchForm = ({ post }: PatchNoticeProps) => {
 
   return (
     <div className="py-[6.25rem]">
-      <div className="py-16">
-        <div className="mb-b mb-[5rem] text-center text-4xl font-bold underline underline-offset-[1rem]">
-          수정하기
+      <div className="mb-b mb-[5rem] pt-16 text-center text-2xl font-bold underline underline-offset-[1rem] sm:text-4xl">
+        수정하기
+      </div>
+      <div className="mx-auto max-w-xs space-y-5 md:max-w-2xl lg:max-w-6xl">
+        <div className="flex justify-end">
+          <DeleteButton postId={post.id} />
         </div>
-        <div className="mx-auto max-w-6xl space-y-5">
-          <div className="flex justify-end">
-            <DeleteButton postId={post.id} />
-          </div>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 rounded-lg border p-10 shadow-md"
-            >
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input placeholder="제목" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="content"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Textarea
-                        placeholder="내용을 입력하세요"
-                        rows={5}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="space-y-4">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 rounded-lg border p-10 shadow-md"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="제목" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      placeholder="내용을 입력하세요"
+                      rows={5}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex items-center justify-between">
+              <div>
                 <Label
                   className="cursor-pointer rounded bg-[#78b237] px-6 py-2 text-white transition-colors hover:bg-[#78b237]/90"
                   htmlFor="fileInput"
@@ -154,30 +155,8 @@ const NoticePatchForm = ({ post }: PatchNoticeProps) => {
                   className="hidden"
                   onChange={handleFileChange}
                 />
-
-                {files.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {files.map((file) => (
-                      <div
-                        key={file.id}
-                        className="flex items-center gap-2 rounded-full border px-3 py-1 text-sm"
-                      >
-                        <span className="max-w-[200px] truncate">
-                          {file.name}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => handleFileDelete(file.id)}
-                          className="text-gray-500 hover:text-gray-700"
-                        >
-                          <Close />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
-              <div className="flex justify-end space-x-2">
+              <div className="flex space-x-2">
                 <Button
                   type="button"
                   variant="outline"
@@ -194,9 +173,28 @@ const NoticePatchForm = ({ post }: PatchNoticeProps) => {
                   {isSubmitting ? "수정 중..." : "수정"}
                 </Button>
               </div>
-            </form>
-          </Form>
-        </div>
+            </div>
+            {files.length > 0 && (
+              <div className="grid w-[15rem] grid-cols-2 gap-2 sm:w-[30rem]">
+                {files.map((file) => (
+                  <div
+                    key={file.id}
+                    className="flex items-center gap-2 rounded-full border px-3 py-1 text-sm"
+                  >
+                    <span className="max-w-[200px] truncate">{file.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleFileDelete(file.id)}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      <Close />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </form>
+        </Form>
       </div>
     </div>
   );

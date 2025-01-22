@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -18,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "./ui/label";
 import Close from "../../public/svg/Close";
+import { useRouter } from "@/i18n/rounting";
 
 interface FileItem {
   id: string;
@@ -95,71 +95,95 @@ const NoticeWriteForm = () => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl space-y-5">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 rounded-lg border p-10 shadow-md"
-        >
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-medium">제목</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="게시물 제목을 입력하세요"
-                    {...field}
-                    className="focus:border-[#78b237]"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="font-medium">내용</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="내용을 입력하세요"
-                    rows={10}
-                    {...field}
-                    className="focus:border-[#78b237]"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="space-y-4">
-            <Label
-              className="cursor-pointer rounded bg-[#78b237] px-6 py-2 text-white transition-colors hover:bg-[#78b237]/90"
-              htmlFor="fileInput"
-            >
-              파일 선택
-            </Label>
-
-            <Input
-              id="fileInput"
-              type="file"
-              multiple
-              className="hidden"
-              onChange={handleFileChange}
+    <div className="py-[6.25rem]">
+      <div className="mb-b mb-[5rem] pt-16 text-center text-2xl font-bold underline underline-offset-[1rem] sm:text-4xl">
+        글쓰기
+      </div>
+      <div className="mx-auto max-w-xs space-y-5 md:max-w-2xl lg:max-w-6xl">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 rounded-lg border p-10 shadow-md"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-medium">제목</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="게시물 제목을 입력하세요"
+                      {...field}
+                      className="focus:border-[#78b237]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
 
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-medium">내용</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="내용을 입력하세요"
+                      rows={10}
+                      {...field}
+                      className="focus:border-[#78b237]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="flex items-center justify-between">
+              <div>
+                <Label
+                  className="cursor-pointer rounded bg-[#78b237] px-6 py-2 text-white transition-colors hover:bg-[#78b237]/90"
+                  htmlFor="fileInput"
+                >
+                  파일 선택
+                </Label>
+
+                <Input
+                  id="fileInput"
+                  type="file"
+                  multiple
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+              </div>
+
+              <div className="flex space-x-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => router.back()}
+                  className="border-[#78b237] text-[#78b237] hover:bg-[#78b237]/10"
+                >
+                  취소
+                </Button>
+                <Button
+                  type="submit"
+                  className="bg-[#78b237] hover:bg-[#78b237]/90"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "등록 중..." : "등록"}
+                </Button>
+              </div>
+            </div>
             {files.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="grid w-[15rem] grid-cols-2 gap-2 sm:w-[30rem]">
                 {files.map((file) => (
                   <div
                     key={file.id}
-                    className="flex items-center gap-2 rounded-full border px-3 py-1 text-sm"
+                    className="flex gap-2 rounded-full border px-3 py-1 text-sm"
                   >
                     <span className="max-w-[200px] truncate">{file.name}</span>
                     <button
@@ -173,27 +197,9 @@ const NoticeWriteForm = () => {
                 ))}
               </div>
             )}
-          </div>
-
-          <div className="flex justify-end space-x-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => router.back()}
-              className="border-[#78b237] text-[#78b237] hover:bg-[#78b237]/10"
-            >
-              취소
-            </Button>
-            <Button
-              type="submit"
-              className="bg-[#78b237] hover:bg-[#78b237]/90"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "등록 중..." : "등록"}
-            </Button>
-          </div>
-        </form>
-      </Form>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };

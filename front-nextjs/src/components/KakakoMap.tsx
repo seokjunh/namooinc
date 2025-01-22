@@ -28,7 +28,8 @@ const KakaoMap = () => {
         <Map
           center={{ lat: 37.5167085, lng: 127.0287715 }}
           level={4}
-          style={{ width: "100%", height: "600px" }}
+          style={{ width: "100%" }}
+          className="h-[20rem] sm:h-[25rem] lg:h-[35rem]"
         >
           <MapMarker
             position={{ lat: 37.5167085, lng: 127.0287715 }}

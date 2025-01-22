@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import ReadingGlasses from "../../public/svg/ReadingGlasses";
+import { usePathname, useRouter } from "@/i18n/rounting";
 
 export default function SearchNotice() {
   const router = useRouter();
+  const pathName = usePathname();
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -19,7 +20,7 @@ export default function SearchNotice() {
         ? `?searchTerm=${encodeURIComponent(data.searchTerm)}`
         : "";
 
-      router.push(`/support/notice${query}`);
+      router.push(`${pathName}${query}`);
 
       reset({ searchTerm: "" });
     } catch (e) {
@@ -33,7 +34,7 @@ export default function SearchNotice() {
         <input
           {...register("searchTerm")}
           placeholder="검색어를 입력하세요."
-          className="rounded-full border py-2 pl-4 pr-12 focus:outline-none"
+          className="w-[15rem] rounded-full border py-2 pl-4 pr-12 focus:outline-none sm:w-full"
         />
         <button type="submit" className="absolute right-4">
           <ReadingGlasses />
