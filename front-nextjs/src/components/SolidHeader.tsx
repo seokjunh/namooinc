@@ -17,9 +17,11 @@ const SolidHeader = () => {
     <div>
       <div className="fixed z-10 flex h-[6.25rem] w-full items-center justify-around bg-white">
         <HeaderLogo />
+        <div className="flex space-x-[2rem] ">
         <HeaderNav onMouseEnter={handleMouseEnter} />
         <MobileMenu fill="#000000" />
         <LocaleChangeButton />
+        </div>
       </div>
 
       <div

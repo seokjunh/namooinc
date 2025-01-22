@@ -46,7 +46,7 @@ const CompanyHistoryItems = ({ scrollRef, setActiveSection }: ItemsProps) => {
   }, [scrollRef, setActiveSection]);
 
   return (
-    <div className="space-y-14">
+    <div className="mx-auto mt-14 max-w-xs space-y-7 sm:max-w-xl sm:space-y-14">
       <div ref={setRef(0)} className="scroll-mt-60">
         <CompanyHistoryItem1 />
       </div>

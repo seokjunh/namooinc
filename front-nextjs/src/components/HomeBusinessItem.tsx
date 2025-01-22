@@ -12,7 +12,7 @@ const HomeBusinessItem = ({ href, imgSrc, title, isLarge }: GridItem) => {
   return (
     <div
       className={`relative overflow-hidden rounded-2xl ${
-        isLarge ? "col-span-2 row-span-2 h-[14.875rem] sm:h-[29.75rem]" : ""
+        isLarge ? "col-span-2 row-span-2 h-[12rem] md:h-[20rem] lg:h-[29.75rem]" : ""
       }`}
     >
       <Link href={href}>

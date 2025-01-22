@@ -53,18 +53,18 @@ const historyData = [
 
 const CompanyHistoryItem1 = () => {
   return (
-    <div className="space-y-14">
+    <div className="sm:space-y-14 space-y-7">
       {historyData.map((data) => (
         <div key={data.year}>
           <div className="mb-4 flex space-x-6">
             <div className="text-2xl font-semibold">{data.year}</div>
             <div>
-              <div className="space-y-4">
+              <div>
                 {data.events.map((item, index) => (
-                  <div key={`${data.year}-${index}`} className="flex space-x-6">
-                    <div className="text-lg font-medium">{item.month}</div>
+                  <div key={`${data.year}-${index}`} className="flex text-xs sm:text-lg space-x-4">
+                    <div className="font-medium">{item.month}</div>
 
-                    <div className="text-lg">{item.content}</div>
+                    <div>{item.content}</div>
                   </div>
                 ))}
               </div>

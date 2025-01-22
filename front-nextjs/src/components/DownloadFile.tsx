@@ -24,7 +24,7 @@ const DownloadFile = () => {
 
   return (
     <div className="py-[6.25rem]">
-      <div className="mx-auto max-w-[100rem] py-16">
+      <div className="mx-auto max-w-7xl py-16">
         <div className="mb-b mb-[5rem] text-center text-4xl font-bold underline underline-offset-[1rem]">
           자료실
         </div>

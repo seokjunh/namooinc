@@ -11,12 +11,10 @@ const CompanyHistoryList = () => {
   return (
     <div>
       <CompanyHistoryTab scrollRef={scrollRef} activeSection={activeSection} />
-      <div className="mx-auto mt-14 flex max-w-[30rem]">
-        <CompanyHistoryItems
-          scrollRef={scrollRef}
-          setActiveSection={setActiveSection}
-        />
-      </div>
+      <CompanyHistoryItems
+        scrollRef={scrollRef}
+        setActiveSection={setActiveSection}
+      />
     </div>
   );
 };

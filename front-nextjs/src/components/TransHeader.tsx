@@ -38,7 +38,7 @@ const TransHeader = () => {
         }`}
       >
         <HeaderLogo />
-        <div className="flex space-x-[4rem]">
+        <div className="flex space-x-[2rem]">
           <HeaderNav onMouseEnter={handleMouseEnter} />
           {!isScrolled ? (
             <MobileMenu fill={"#ffffff"} />
